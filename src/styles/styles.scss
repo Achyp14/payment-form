@@ -1,0 +1,97 @@
+@import './mixins.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: white;
+    color: black;
+    font-weight: 400;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.main-container {
+    display: flex;
+    margin: 20px 30px;
+    justify-content: space-around;
+
+    .product-container, .success-payment-container {
+        @include columnDirection;
+        line-height: 1.5;
+
+        .success {
+            color: blue;
+        }
+
+        .failed {
+            color: red;
+        }
+    }
+
+    .payment-container {
+        display: flex;
+
+        .form {
+            @include columnDirection;
+
+            .form-field {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+
+                &.button-field {
+                    justify-content: flex-end;
+                }
+
+                .field-title {
+                    margin: 0 10px 8px 0;
+                }
+
+                .field {
+                    @include columnDirection;
+
+                    .expiry {
+                        width: 35%;
+                    }
+
+                    .submit-button {
+                        background-color: blue;
+                        color: white;
+                        padding: 5px 10px;
+                        border-radius: 10px;
+                        border: none;
+                    }
+
+                    .submit-button:disabled {
+                        background-color: gray;
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and(max-width: 540px) {
+        flex-direction: column;
+
+        .product-container {
+           margin-bottom: 20px;
+        }
+
+        .payment-container {
+            .form {
+                width: 100%;
+
+                .form-field {
+                    flex-direction: column;
+                    align-items: initial;
+                }
+            }
+        }
+    }
+}
+
